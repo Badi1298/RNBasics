@@ -1,31 +1,32 @@
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import { StyleSheet, View } from 'react-native';
+
+import GoalsList from './components/GoalsList';
+import AddGoals from './components/AddGoals';
 
 export default function App() {
-    return (
-        <View style={styles.container}>
-            <Text style={{ color: 'green', padding: 16 }}>Aaaaaaaaaaa</Text>
-            <Button title="This is a button" />
-            <View style={styles.innerContainer}>
-                <Text style={{ color: 'green' }}>Aaaaaaaaaaa</Text>
-                <Text style={{ color: 'red' }}>Aaaaaaaaaaa</Text>
-                <Text style={{ color: 'blue' }}>Aaaaaaaaaaa</Text>
-            </View>
-        </View>
-    );
+	const [goalText, setGoalText] = useState('');
+	const [goals, setGoals] = useState([]);
+
+	return (
+		<View style={styles.appContainer}>
+			<AddGoals
+				goalText={goalText}
+				setGoalText={setGoalText}
+				setGoals={setGoals}
+			/>
+			<GoalsList
+				goals={goals}
+				setGoals={setGoals}
+			/>
+		</View>
+	);
 }
 
 const styles = StyleSheet.create({
-    container: {
-        display: 'flex',
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    innerContainer: {
-        display: 'flex',
-        flexDirection: 'row',
-        columnGap: 16,
-        marginTop: 20,
-    },
+	appContainer: {
+		flex: 1,
+		paddingTop: 36,
+		paddingHorizontal: 16,
+	},
 });
