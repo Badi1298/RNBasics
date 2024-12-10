@@ -1,19 +1,31 @@
 import { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Button, StyleSheet, View } from 'react-native';
 
-import GoalsList from './components/GoalsList';
 import AddGoals from './components/AddGoals';
+import GoalsList from './components/GoalsList';
 
 export default function App() {
-	const [goalText, setGoalText] = useState('');
 	const [goals, setGoals] = useState([]);
+	const [goalText, setGoalText] = useState('');
+	const [modalVisibility, setModalVisibility] = useState(false);
+
+	const toggleModalVisibilityHandler = () => {
+		setModalVisibility(!modalVisibility);
+	};
 
 	return (
 		<View style={styles.appContainer}>
+			<Button
+				title="Open Add Goal Modal"
+				color="teal"
+				onPress={toggleModalVisibilityHandler}
+			></Button>
 			<AddGoals
 				goalText={goalText}
-				setGoalText={setGoalText}
 				setGoals={setGoals}
+				setGoalText={setGoalText}
+				modalVisibility={modalVisibility}
+				toggleModalVisibilityHandler={toggleModalVisibilityHandler}
 			/>
 			<GoalsList
 				goals={goals}

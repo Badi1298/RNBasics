@@ -1,6 +1,6 @@
-import { Button, StyleSheet, TextInput, View } from 'react-native';
+import { Button, Modal, StyleSheet, TextInput, View } from 'react-native';
 
-export default function AddGoals({ goalText, setGoalText, setGoals }) {
+export default function AddGoals({ goalText, setGoalText, setGoals, modalVisibility, toggleModalVisibilityHandler }) {
 	function goalInputHandler(text) {
 		setGoalText(text);
 	}
@@ -10,39 +10,56 @@ export default function AddGoals({ goalText, setGoalText, setGoals }) {
 
 		setGoals((prev) => [...prev, goalText]);
 		setGoalText('');
+		toggleModalVisibilityHandler();
 	}
 
 	return (
-		<View style={styles.inputContainer}>
-			<TextInput
-				value={goalText}
-				style={styles.textInput}
-				placeholder="Your course goal"
-				onChangeText={goalInputHandler}
-			/>
-			<Button
-				title="Add Goal"
-				onPress={addGoalHandler}
-			/>
-		</View>
+		<Modal
+			animationType="slide"
+			visible={modalVisibility}
+			onRequestClose={() => toggleModalVisibilityHandler}
+		>
+			<View style={styles.inputContainer}>
+				<TextInput
+					value={goalText}
+					style={styles.textInput}
+					placeholder="Your course goal"
+					onChangeText={goalInputHandler}
+				/>
+				<View style={styles.buttonsContainer}>
+					<Button
+						title="Add Goal"
+						onPress={addGoalHandler}
+					/>
+					<Button
+						title="Close Modal"
+						onPress={toggleModalVisibilityHandler}
+					/>
+				</View>
+			</View>
+		</Modal>
 	);
 }
 
 const styles = StyleSheet.create({
 	inputContainer: {
 		flex: 1,
-		flexDirection: 'row',
-		justifyContent: 'space-between',
+		justifyContent: 'center',
 		alignItems: 'center',
+		rowGap: 20,
 		marginBottom: 24,
 		borderBottomWidth: 1,
+		paddingHorizontal: 20,
 		borderBottomColor: '#cccccc',
+	},
+	buttonsContainer: {
+		flexDirection: 'row',
+		columnGap: 12,
 	},
 	textInput: {
 		borderWidth: 1,
 		borderColor: '#cccccc',
-		width: '70%',
+		width: '100%',
 		padding: 8,
-		marginRight: 8,
 	},
 });
