@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { StatusBar } from 'expo-status-bar';
 import { Button, StyleSheet, View } from 'react-native';
 
 import AddGoals from './components/AddGoals';
@@ -14,31 +15,34 @@ export default function App() {
 	};
 
 	return (
-		<View style={styles.appContainer}>
-			<Button
-				title="Open Add Goal Modal"
-				color="teal"
-				onPress={toggleModalVisibilityHandler}
-			></Button>
-			<AddGoals
-				goalText={goalText}
-				setGoals={setGoals}
-				setGoalText={setGoalText}
-				modalVisibility={modalVisibility}
-				toggleModalVisibilityHandler={toggleModalVisibilityHandler}
-			/>
-			<GoalsList
-				goals={goals}
-				setGoals={setGoals}
-			/>
-		</View>
+		<>
+			<StatusBar style="dark" />
+			<View style={styles.appContainer}>
+				<Button
+					title="Open Add Goal Modal"
+					color="teal"
+					onPress={toggleModalVisibilityHandler}
+				></Button>
+				<AddGoals
+					goalText={goalText}
+					setGoals={setGoals}
+					setGoalText={setGoalText}
+					modalVisibility={modalVisibility}
+					toggleModalVisibilityHandler={toggleModalVisibilityHandler}
+				/>
+				<GoalsList
+					goals={goals}
+					setGoals={setGoals}
+				/>
+			</View>
+		</>
 	);
 }
 
 const styles = StyleSheet.create({
 	appContainer: {
 		flex: 1,
-		paddingTop: 36,
+		paddingTop: 46,
 		paddingHorizontal: 16,
 	},
 });

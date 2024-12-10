@@ -33,10 +33,12 @@ export default function AddGoals({ goalText, setGoalText, setGoals, modalVisibil
 				<View style={styles.buttonsContainer}>
 					<Button
 						title="Add Goal"
+						color="#235e71"
 						onPress={addGoalHandler}
 					/>
 					<Button
 						title="Close Modal"
+						color="#d8e6ad"
 						onPress={toggleModalVisibilityHandler}
 					/>
 				</View>
@@ -65,8 +67,10 @@ const styles = StyleSheet.create({
 	},
 	textInput: {
 		borderWidth: 1,
-		borderColor: '#cccccc',
+		borderColor: '#e9f5f8',
+		borderRadius: 4,
 		width: '100%',
-		padding: 8,
+		padding: 16,
+		backgroundColor: '#e9f5f8',
 	},
 });

@@ -28,6 +28,7 @@ export default function GoalsList({ goals, setGoals }) {
 const styles = StyleSheet.create({
 	goalsContainer: {
 		flex: 6,
+		paddingTop: 16,
 	},
 	item: {
 		backgroundColor: 'teal',
