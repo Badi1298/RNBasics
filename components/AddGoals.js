@@ -1,4 +1,4 @@
-import { Button, Modal, StyleSheet, TextInput, View } from 'react-native';
+import { Button, Image, Modal, StyleSheet, TextInput, View } from 'react-native';
 
 export default function AddGoals({ goalText, setGoalText, setGoals, modalVisibility, toggleModalVisibilityHandler }) {
 	function goalInputHandler(text) {
@@ -20,6 +20,10 @@ export default function AddGoals({ goalText, setGoalText, setGoals, modalVisibil
 			onRequestClose={() => toggleModalVisibilityHandler}
 		>
 			<View style={styles.inputContainer}>
+				<Image
+					style={styles.image}
+					source={require('../assets/images/goal.png')}
+				/>
 				<TextInput
 					value={goalText}
 					style={styles.textInput}
@@ -47,10 +51,13 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		rowGap: 20,
-		marginBottom: 24,
-		borderBottomWidth: 1,
 		paddingHorizontal: 20,
-		borderBottomColor: '#cccccc',
+		backgroundColor: '#daedf4',
+	},
+	image: {
+		width: 100,
+		height: 100,
+		margin: 20,
 	},
 	buttonsContainer: {
 		flexDirection: 'row',
