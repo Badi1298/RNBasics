@@ -6,6 +6,8 @@ export default function AddGoals({ goalText, setGoalText, setGoals }) {
 	}
 
 	function addGoalHandler() {
+		if (!goalText) return;
+
 		setGoals((prev) => [...prev, goalText]);
 		setGoalText('');
 	}

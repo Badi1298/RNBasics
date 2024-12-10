@@ -1,9 +1,11 @@
-import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
+
+import GoalItem from './GoalItem';
 
 export default function GoalsList({ goals, setGoals }) {
-	function deleteGoalHandler(index) {
+	const onDeleteGoal = (index) => {
 		setGoals((prev) => prev.filter((_, i) => index !== i));
-	}
+	};
 
 	return (
 		<View style={styles.goalsContainer}>
@@ -11,11 +13,11 @@ export default function GoalsList({ goals, setGoals }) {
 			<FlatList
 				data={goals}
 				renderItem={({ item, index }) => (
-					<Pressable onPress={() => deleteGoalHandler(index)}>
-						<View style={styles.item}>
-							<Text style={styles.title}>{item}</Text>
-						</View>
-					</Pressable>
+					<GoalItem
+						item={item}
+						index={index}
+						onDeleteGoal={onDeleteGoal}
+					/>
 				)}
 				keyExtractor={(item) => item}
 			/>
